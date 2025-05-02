@@ -9,10 +9,11 @@ export default defineConfig({
         },
         // {
         //     name: 'Firefox',
-        //     use: {...devices['Desktop Firefox']}
+        //     use: { ...devices['Desktop Firefox'] }
         // }
     ],
     use: {
         headless: false,
+        baseURL: "http://playwright.dev"
     }
 })
