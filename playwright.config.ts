@@ -7,10 +7,10 @@ export default defineConfig({
             name: 'Chromium',
             use: { ...devices['Desktop Chrome'] }
         },
-        // {
-        //     name: 'Firefox',
-        //     use: { ...devices['Desktop Firefox'] }
-        // }
+        {
+            name: 'Firefox',
+            use: { ...devices['Desktop Firefox'] }
+        }
     ],
     use: {
         headless: false,
