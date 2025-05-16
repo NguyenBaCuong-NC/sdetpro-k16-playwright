@@ -1,10 +1,12 @@
 import { test } from "@playwright/test";
 
+const CUSTOM_TIMEOUT = { timeout: 5 * 1000 };
+
 test('Link test - XPATH', async ({ page }) => {
     await page.goto("./")
 
     const footerLoc = page.locator("//a[contains(text(),'Elemental')]");
-    // const footerEle = await page.waitForSelector("//a[contains(text(),'Elemental Selenium')]", { timeout: 5 * 1000 });
+    // const footerEle = await page.waitForSelector("//a[contains(text(),'Elemental Selenium')]", CUSTOM_TIMEOUT);
     await footerLoc.click();
 
     //DEBUG PURPOSE ONLY
@@ -15,7 +17,7 @@ test('Link test - CSS', async ({ page }) => {
     await page.goto("./")
 
     // const footerLoc = page.locator("a:has-text('Elemental Selenium')");
-    const footerEle = await page.waitForSelector("a:has-text('Elemental Selenium')", { timeout: 5 * 1000 });
+    const footerEle = await page.waitForSelector("a:has-text('Elemental Selenium')", CUSTOM_TIMEOUT);
     await footerEle.click();
 
     //DEBUG PURPOSE ONLY
