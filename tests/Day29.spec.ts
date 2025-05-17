@@ -63,6 +63,13 @@ test.describe('Execute JS snipet', () => {
         await page.goto("https://www.foodandwine.com/");
         const adId = "leaderboard-flex-1"
         const leaderBoardFlexLoc = `#${adId}`;
+        //Scroll down a little
+        await scrollToBottom(page, 0.1);
+        // click on my blank area
+        await page.mouse.click(0, 0);
+        //Scroll up again
+        await page.mouse.wheel(0, -10000);
+
         await page.waitForSelector(leaderBoardFlexLoc, { timeout: 10 * 1000 });
 
         const adParams = await getAdvertisingParams(page, adId);
@@ -71,10 +78,10 @@ test.describe('Execute JS snipet', () => {
 
 })
 
-async function scrollToBottom(page: Page): Promise<void> {
-    await page.evaluate(() => {
-        window.scrollTo(0, document.body.scrollHeight);
-    });
+async function scrollToBottom(page: Page, percentage: number = 1): Promise<void> {
+    await page.evaluate((percentage) => {
+        window.scrollTo(0, document.body.scrollHeight * percentage);
+    }, percentage);
 }
 
 async function getAdvertisingParams(page: Page, adSlotId: string): Promise<any> {
