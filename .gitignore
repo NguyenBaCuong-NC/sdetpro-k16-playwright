@@ -1,2 +1,6 @@
+# Ignore loval installed dependencies
 node_modules
 yarn.lock
+
+# Ignore test results
+test-results
