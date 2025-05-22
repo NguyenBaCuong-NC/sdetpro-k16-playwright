@@ -1,9 +1,11 @@
 import { Locator } from "@playwright/test";
 import FooterColumnComponent from "./FooterColumnComponent";
+import { selector } from "../../../SelectorDecorator";
 
+@selector(".column.information")
 export default class InformationColumnComponent extends FooterColumnComponent {
 
-    public static readonly LOCATOR = ".column.information";
+    // public static readonly LOCATOR = ".column.information";
 
     constructor(component: Locator) {
         super(component);

@@ -9,7 +9,7 @@ export default class HomePage extends BasePage {
     }
 
     pageBodyComponent(): PageBodyComponent {
-        return new PageBodyComponent(this.page.locator(PageBodyComponent.LOCATOR));
+        return new PageBodyComponent(this.page.locator(PageBodyComponent.selectorValue));
     }
 
 }

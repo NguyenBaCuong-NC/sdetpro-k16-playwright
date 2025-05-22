@@ -1,6 +1,8 @@
 import { errors, Locator } from "@playwright/test";
 import { ComputerEssentialComponent } from "./ComputerEssentialComponent";
+import { selector } from "../../SelectorDecorator";
 
+@selector(".product-essential")
 export default class StandardComputerComponent extends ComputerEssentialComponent {
 
     private allDropdownSelector: string = "select[id^='product_attribute']"
@@ -11,20 +13,21 @@ export default class StandardComputerComponent extends ComputerEssentialComponen
 
     public async selectRAM(value: string) {
         const RAM_DROP_DOWN_INDEX: number = 1;
-        const ramDropdown: Locator = await this.component.locator(this.allDropdownSelector).all()[RAM_DROP_DOWN_INDEX];
+        const allDropdowns: Locator[] = await this.component.locator(this.allDropdownSelector).all();
+        const ramDropdown: Locator = allDropdowns[RAM_DROP_DOWN_INDEX];
         const allOptionLocators: Locator[] = await ramDropdown.locator('option').all();
         let optionIndex = -1;
         let optionFullText: string | null = "";
 
         for (const optionLocator of allOptionLocators) {
-            optionFullText = await optionLocator.textContent();
+            optionFullText = await optionLocator.innerText();
             if (optionFullText?.startsWith(value)) {
                 optionIndex = allOptionLocators.indexOf(optionLocator);
                 break;
             }
         }
 
-        if (optionIndex = -1) {
+        if (optionIndex === -1) {
             throw new Error(`There is no matching option for ${value}`);
         }
 
