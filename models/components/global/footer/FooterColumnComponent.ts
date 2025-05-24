@@ -16,26 +16,17 @@ export default class FooterColumnComponent {
 
     async getTexts(): Promise<string[]> {
         // const linkListText: string[] = [];
-        const linlList = await this.component.locator(this.linkSelector).all();
+        const texts = await this.component.locator(this.linkSelector).all();
         // for (const link of linlList) {
         //     const linkText = await link.innerText();
         //     linkListText.push(linkText);
         // }
         // return linkListText;
-
-        return Promise.all(linlList.map(link => link.innerText()));
-
+        return Promise.all(texts.map(link => link.innerText()));
     }
 
     async getLinkList(): Promise<string[]> {
-        // const hrefList: string[] = [];
         const linkList = await this.component.locator(this.linkSelector).all();
-        // for (const link of linlList) {
-        //     const href = await link.getAttribute('href');
-        //     hrefList.push(href || "");
-        // }
-        // return hrefList;
-
         return Promise.all(linkList.map(async link => await link.getAttribute('href') || ""));
     }
 

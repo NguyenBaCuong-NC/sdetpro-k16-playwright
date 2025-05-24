@@ -33,4 +33,12 @@ export default class FooterComponent {
         return await this.component.locator(".footer-poweredby").innerText();
     }
 
+    public async powerByHrefs(): Promise<string | null> {
+        return await this.component.locator(".footer-poweredby a").getAttribute('href');
+    }
+
+    public async copyrightText(): Promise<string | null> {
+        return await this.component.locator(".footer-disclaimer").innerText();
+    }
+
 }
