@@ -4,6 +4,9 @@ import { selector } from "../../SelectorDecorator";
 
 @selector(".product-essential")
 export abstract class ComputerEssentialComponent extends ProductEssentialComponent {
+
+    // public static readonly LOCATOR = ".product-essential";
+
     constructor(protected component: Locator) {
         super(component);
     }
