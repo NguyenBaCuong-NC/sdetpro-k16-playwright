@@ -110,6 +110,25 @@ export default class FooterTestFlow {
         )
     }
 
+
+    async verifyPowerByText(footerComponent: FooterComponent) {
+        const expectedPowerByText: string = "Powered by nopCommerce";
+        const expectedHrefs: string = "http://www.nopcommerce.com/";
+        const actualPowerByText = await footerComponent.powerByText();
+        const actualHrefs = await footerComponent.powerByHrefs();
+
+        expect(actualPowerByText).toBe(expectedPowerByText);
+        expect(actualHrefs).toBe(expectedHrefs);
+    }
+
+    async verifyCopyrightText(footerComponent: FooterComponent) {
+        const expectedCopyrightText: string =
+            "Copyright © 2025 Tricentis Demo Web Shop. All rights reserved.";
+        const actualCopyrightText = await footerComponent.copyrightText();
+
+        expect(actualCopyrightText).toBe(expectedCopyrightText);
+    }
+
     private async verifyFooterColumnComponent(
         footerColumnComponent: FooterColumnComponent,
         expectTitleText: string,
@@ -122,24 +141,6 @@ export default class FooterTestFlow {
         expect(actualTitleText).toBe(expectTitleText);
         expect(actualTexts).toStrictEqual(expectedTexts);
         expect(actualHrefs).toStrictEqual(expectedHrefs);
-    }
-
-    private async verifyPowerByText(footerComponent: FooterComponent) {
-        const expectedPowerByText: string = "Powered by nopCommerce";
-        const expectedHrefs: string = "http://www.nopcommerce.com/";
-        const actualPowerByText = await footerComponent.powerByText();
-        const actualHrefs = await footerComponent.powerByHrefs();
-
-        expect(actualPowerByText).toBe(expectedPowerByText);
-        expect(actualHrefs).toBe(expectedHrefs);
-    }
-
-    private async verifyCopyrightText(footerComponent: FooterComponent) {
-        const expectedCopyrightText: string =
-            "Copyright © 2025 Tricentis Demo Web Shop. All rights reserved.";
-        const actualCopyrightText = await footerComponent.copyrightText();
-
-        expect(actualCopyrightText).toBe(expectedCopyrightText);
     }
 
 }
