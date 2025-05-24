@@ -1,6 +1,4 @@
 import test from "@playwright/test";
-import HomePage from "../models/pages/HomePage";
-import PageBodyComponent from "../models/components/PageBodyComponent";
 import CheapComputerComponent from "../models/components/computer/CheapComputerComponent";
 import StandardComputerComponent from "../models/components/computer/StandardComputerComponent";
 import { ComputerDetailsPage } from "../models/pages/ComputerDetailsPage";

@@ -1,7 +1,8 @@
 import { Locator, Page } from "@playwright/test";
 import BasePage from "./BasePage";
 import { ComputerEssentialComponent } from "../components/computer/ComputerEssentialComponent";
-import { Selector } from "../SelectorDecorator";
+import { Selector } from "../../types/DataType";
+
 
 // Tạo ra 1 Constructor để tạo 1 đối tượng từ cái khuôn
 export type ComputerComponentConstructor<T extends ComputerEssentialComponent> =
