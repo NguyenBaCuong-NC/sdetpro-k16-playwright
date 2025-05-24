@@ -1,5 +1,5 @@
 import { Page } from "@playwright/test";
-import { LoginCreds } from "../../../types/DataType";
+import { LoginCreds } from "../../../test_data/DataType";
 
 export default class LoginPageMethod01 {
 

@@ -1,7 +1,7 @@
 import { Locator, Page } from "@playwright/test";
 import BasePage from "./BasePage";
 import { ComputerEssentialComponent } from "../components/computer/ComputerEssentialComponent";
-import { Selector } from "../../types/DataType";
+import { Selector } from "../../test_data/DataType";
 
 
 // Tạo ra 1 Constructor để tạo 1 đối tượng từ cái khuôn

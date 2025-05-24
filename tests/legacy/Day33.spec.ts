@@ -1,8 +1,8 @@
 import test from "@playwright/test";
-import CheapComputerComponent from "../models/components/computer/CheapComputerComponent";
-import StandardComputerComponent from "../models/components/computer/StandardComputerComponent";
-import { ComputerDetailsPage } from "../models/pages/ComputerDetailsPage";
-import CustomerServiceColumnComponent from "../models/components/global/footer/CustomerServiceColumnComponent";
+import CheapComputerComponent from "../../models/components/computer/CheapComputerComponent";
+import StandardComputerComponent from "../../models/components/computer/StandardComputerComponent";
+import { ComputerDetailsPage } from "../../models/pages/ComputerDetailsPage";
+import CustomerServiceColumnComponent from "../../models/components/global/footer/CustomerServiceColumnComponent";
 
 test("Cheap Computer Component Test", async ({ page }) => {
     await page.goto("https://demowebshop.tricentis.com/build-your-cheap-own-computer");

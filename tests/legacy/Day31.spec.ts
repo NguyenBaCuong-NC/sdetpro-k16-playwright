@@ -1,6 +1,6 @@
 import test from "@playwright/test";
-import HomePage from "../models/pages/HomePage";
-import PageBodyComponent from "../models/components/PageBodyComponent";
+import HomePage from "../../models/pages/HomePage";
+import PageBodyComponent from "../../models/components/PageBodyComponent";
 
 test("POM - List of component", async ({ page }) => {
     await page.goto("https://demowebshop.tricentis.com/");
