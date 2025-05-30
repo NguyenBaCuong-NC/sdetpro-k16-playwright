@@ -4,6 +4,9 @@ import { ComputerDetailsPage } from "../../models/pages/ComputerDetailsPage";
 
 // export class OrderComputerFlow extends LoginFlow {}
 export class OrderComputerFlow {
+
+    private totalPrice: number = 0;
+
     constructor(private page: Page, private computerData: ComputerDataType) {
         this.page = page;
         this.computerData = computerData;
@@ -16,23 +19,29 @@ export class OrderComputerFlow {
         await computerComponent.unselectAllOptions();
 
         // Build computer spec base on test data
-        const { processor, hdd, ram, os, software } = this.computerData;
+        const { processor, hdd, ram, os, software, quantity } = this.computerData;
 
         const processorAdditionalPrice = this.getAddtionalPrice(await computerComponent.selectProcessor(processor));
         const ramAdditionalPrice = this.getAddtionalPrice(await computerComponent.selectRAM(ram));
         const hddAdditionalPrice = this.getAddtionalPrice(await computerComponent.selectHDD(hdd));
         const softwareAdditionalPrice = this.getAddtionalPrice(await computerComponent.selectSoftware(software));
+        let osAdditionalPrice = 0;
+        if (os) {
+            osAdditionalPrice = this.getAddtionalPrice(await computerComponent.selectOs(os));
+        }
+        if (quantity) {
+            await computerComponent.inputQuantity(quantity);
+        }
 
-        console.log(processorAdditionalPrice, ramAdditionalPrice, hddAdditionalPrice, softwareAdditionalPrice);
+        const basePrice = await computerComponent.getBasePrice();
+        const additionalPrice = processorAdditionalPrice + ramAdditionalPrice + hddAdditionalPrice + softwareAdditionalPrice + osAdditionalPrice;
+        this.totalPrice = (basePrice + additionalPrice) * (quantity ? quantity : 1);
 
-        // await computerComponent.selectOS(os);
-        // await computerComponent.selectSoftware(software);
-        // 8 GB [+60.00]
+        await computerComponent.clickOnAddToCartBtn();
 
         // DEBUG PURPOSE ONLY
         await this.page.waitForTimeout(3 * 1000);
     }
-
 
     private getAddtionalPrice(optionFullText: string): number {
         const regex = /\+\d+\.\d+/g;
@@ -42,4 +51,5 @@ export class OrderComputerFlow {
         }
         return 0;
     }
+
 }

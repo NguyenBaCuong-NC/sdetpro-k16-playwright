@@ -9,4 +9,5 @@ export interface ComputerDataType {
     hdd: string,
     os?: string,
     software: string,
+    quantity?: number,
 }

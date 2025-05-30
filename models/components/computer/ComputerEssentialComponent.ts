@@ -21,6 +21,10 @@ export abstract class ComputerEssentialComponent extends ProductEssentialCompone
         return await this.selectComputerOtion(value);
     }
 
+    public async selectOs(value: string): Promise<string> {
+        return await this.selectComputerOtion(value);
+    }
+
     protected async selectComputerOtion(type: string): Promise<string> {
         //$x('//label[contains(text(),"320")]')
         const selectorValue = `//label[contains(text(),"${type}")]`;

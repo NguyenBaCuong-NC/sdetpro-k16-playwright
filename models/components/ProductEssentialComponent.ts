@@ -3,6 +3,11 @@ import { Locator } from "@playwright/test";
 export default class ProductEssentialComponent {
 
     private allOptionSel = ".option-list input";
+    private quantitySel = "input[class*='qty-input']";
+    private addToCartBtnSel = "input[id^='add-to-cart-button']";
+    private basePriceSel = "span[class^='price-value']";
+
+
     protected constructor(protected component: Locator) {
         this.component = component;
     }
@@ -15,6 +20,18 @@ export default class ProductEssentialComponent {
                 await optionLoc.click();
             }
         }
+    }
+
+    public async inputQuantity(quantity: number): Promise<void> {
+        await this.component.locator(this.quantitySel).fill(quantity.toString());
+    }
+
+    public async clickOnAddToCartBtn(): Promise<void> {
+        await this.component.locator(this.addToCartBtnSel).click();
+    }
+
+    public async getBasePrice(): Promise<number> {
+        return Number(await this.component.locator(this.basePriceSel).innerText());
     }
 
 }
