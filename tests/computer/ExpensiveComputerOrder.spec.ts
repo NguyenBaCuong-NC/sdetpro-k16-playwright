@@ -7,5 +7,7 @@ test("Expensive Computer Component Test", async ({ page }) => {
     const orderComputerFlow = new OrderComputerFlow(page, expensiveComputerData);
     await orderComputerFlow.buildComputerSpecAndAddToCard();
     await orderComputerFlow.verifyShoppingCart();
+    await orderComputerFlow.agreeTosAndCheckOut();
+    await orderComputerFlow.inputBillingAddress();
 });
 

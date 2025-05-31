@@ -1,6 +1,10 @@
-import { Page } from "@playwright/test";
+import { expect, Page } from "@playwright/test";
 import { ComputerDataType } from "../../test_data/computer/ComputerDataType";
 import { ComputerDetailsPage } from "../../models/pages/ComputerDetailsPage";
+import ShoppingCartPage from "../../models/pages/ShoppingCartPage";
+import CheckOutOptionPage from "../../models/pages/CheckOutOptionPage";
+import defaultCheckOutUser from "../../test_data/DefaultCheckOutUser.json";
+import CheckOutPage from "../../models/pages/CheckOutPage";
 
 // export class OrderComputerFlow extends LoginFlow {}
 export class OrderComputerFlow {
@@ -46,8 +50,55 @@ export class OrderComputerFlow {
 
     }
 
-    public verifyShoppingCart() {
+    public async verifyShoppingCart() {
+        const shoppingCartPage = new ShoppingCartPage(this.page);
+        const totalsComponent = shoppingCartPage.totalsComponent();
+        const cartItemRowComponentList = await shoppingCartPage.cartItemRowComponentList();
 
+        // Verify all shopping item rows
+        expect(cartItemRowComponentList.length).toBeGreaterThan(0);
+        let cartItemRowsSubtotal = 0;
+        for (const cartItemRow of cartItemRowComponentList) {
+            const unitPrice = await cartItemRow.unitPrice();
+            const quantity = await cartItemRow.quantityPrice();
+            const subTotal = await cartItemRow.subTotalPrice();
+            cartItemRowsSubtotal += subTotal;
+            expect(this.totalPrice).toBe(subTotal);
+            expect(unitPrice * quantity).toBe(subTotal);
+        }
+
+        //Verifying totals component
+        const priceCategories = await totalsComponent.priceCategories();
+        const subTotal = priceCategories["Sub-Total:"];
+        const shipping = priceCategories['Shipping:'];
+        const tax = priceCategories['Tax:'];
+        const total = priceCategories['Total:'];
+        expect(subTotal).toBe(cartItemRowsSubtotal);
+        expect(total).toBe(subTotal + shipping + tax);
+
+    }
+
+    public async agreeTosAndCheckOut() {
+        const shoppingCartPage = new ShoppingCartPage(this.page);
+        const totalsComponent = shoppingCartPage.totalsComponent();
+        await totalsComponent.acceptTos();
+        await totalsComponent.clickCheckOutBtn();
+        await new CheckOutOptionPage(this.page).clickCheckOutAsGuest();
+    }
+
+    public async inputBillingAddress() {
+        const { firstName, lastName, email, country, state, city, add1, zipCode, phoneNum } = defaultCheckOutUser;
+        const checkOutPage = new CheckOutPage(this.page);
+        const billingAddressComponent = checkOutPage.billingAddressComponent();
+        await billingAddressComponent.inputFirstName(firstName);
+        await billingAddressComponent.inputLastName(lastName);
+        await billingAddressComponent.inputEmail(email);
+        await billingAddressComponent.selectCountry(country);
+        await billingAddressComponent.selectState(state);
+        await billingAddressComponent.inputCity(city);
+        await billingAddressComponent.inputAdd1(add1);
+        await billingAddressComponent.inputZipCode(zipCode);
+        await billingAddressComponent.inputPhoneNum(phoneNum);
     }
 
     private getAddtionalPrice(optionFullText: string): number {
