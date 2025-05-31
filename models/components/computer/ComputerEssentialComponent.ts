@@ -10,22 +10,23 @@ export abstract class ComputerEssentialComponent extends ProductEssentialCompone
     constructor(protected component: Locator) {
         super(component);
     }
+
     abstract selectProcessor(value: string): Promise<string>;
     abstract selectRAM(value: string): Promise<string>;
 
     public async selectHDD(value: string): Promise<string> {
-        return await this.selectComputerOtion(value);
+        return await this.selectComputerOption(value);
     }
 
     public async selectSoftware(value: string): Promise<string> {
-        return await this.selectComputerOtion(value);
+        return await this.selectComputerOption(value);
     }
 
     public async selectOs(value: string): Promise<string> {
-        return await this.selectComputerOtion(value);
+        return await this.selectComputerOption(value);
     }
 
-    protected async selectComputerOtion(type: string): Promise<string> {
+    protected async selectComputerOption(type: string): Promise<string> {
         //$x('//label[contains(text(),"320")]')
         const selectorValue = `//label[contains(text(),"${type}")]`;
         const optionLocator = this.component.locator(selectorValue).first();

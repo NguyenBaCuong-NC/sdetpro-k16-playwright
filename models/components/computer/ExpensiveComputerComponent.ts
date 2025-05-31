@@ -8,11 +8,11 @@ export default class ExpensiveComputerComponent extends ComputerEssentialCompone
     }
 
     public async selectProcessor(value: string): Promise<string> {
-        return await this.selectComputerOtion(value);
+        return await this.selectComputerOption(value);
     }
 
     public async selectRAM(value: string): Promise<string> {
-        return await this.selectComputerOtion(value);
+        return await this.selectComputerOption(value);
     }
 
 }

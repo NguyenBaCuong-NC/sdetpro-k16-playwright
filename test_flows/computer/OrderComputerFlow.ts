@@ -37,10 +37,17 @@ export class OrderComputerFlow {
         const additionalPrice = processorAdditionalPrice + ramAdditionalPrice + hddAdditionalPrice + softwareAdditionalPrice + osAdditionalPrice;
         this.totalPrice = (basePrice + additionalPrice) * (quantity ? quantity : 1);
 
-        await computerComponent.clickOnAddToCartBtn();
+        // Add to cart and wait for event
+        const requestSlug = await computerComponent.clickOnAddToCartBtn();
+        await this.page.waitForResponse(requestSlug);
 
-        // DEBUG PURPOSE ONLY
-        await this.page.waitForTimeout(3 * 1000);
+        // Navigate to Shopping Cart Page
+        await computerDetailsPage.headerComponent().clickOnShoppingCartLink();
+
+    }
+
+    public verifyShoppingCart() {
+
     }
 
     private getAddtionalPrice(optionFullText: string): number {

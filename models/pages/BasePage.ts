@@ -1,6 +1,6 @@
 import { Page } from "@playwright/test";
 import FooterComponent from "../components/global/footer/FooterComponent";
-import PageBodyComponent from "../components/PageBodyComponent";
+import HeaderComponent from "../components/global/header/HeaderComponent";
 
 export default class BasePage {
 
@@ -10,8 +10,12 @@ export default class BasePage {
         this.page = page;
     }
 
-    footerComponent(): FooterComponent {
+    public footerComponent(): FooterComponent {
         return new FooterComponent(this.page.locator(FooterComponent.LOCATOR));
+    }
+
+    public headerComponent(): HeaderComponent {
+        return new HeaderComponent(this.page.locator(HeaderComponent.LOCATOR));
     }
 
 }

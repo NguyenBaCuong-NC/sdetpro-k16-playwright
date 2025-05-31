@@ -26,8 +26,9 @@ export default class ProductEssentialComponent {
         await this.component.locator(this.quantitySel).fill(quantity.toString());
     }
 
-    public async clickOnAddToCartBtn(): Promise<void> {
+    public async clickOnAddToCartBtn(): Promise<string> {
         await this.component.locator(this.addToCartBtnSel).click();
+        return '**/addproducttocart/**';
     }
 
     public async getBasePrice(): Promise<number> {

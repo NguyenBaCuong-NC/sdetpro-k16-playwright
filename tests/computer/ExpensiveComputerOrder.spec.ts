@@ -6,5 +6,6 @@ test("Expensive Computer Component Test", async ({ page }) => {
     await page.goto("https://demowebshop.tricentis.com/build-your-own-expensive-computer-2");
     const orderComputerFlow = new OrderComputerFlow(page, expensiveComputerData);
     await orderComputerFlow.buildComputerSpecAndAddToCard();
+    await orderComputerFlow.verifyShoppingCart();
 });
 
