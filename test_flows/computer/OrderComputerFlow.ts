@@ -99,6 +99,7 @@ export class OrderComputerFlow {
         await billingAddressComponent.inputAdd1(add1);
         await billingAddressComponent.inputZipCode(zipCode);
         await billingAddressComponent.inputPhoneNum(phoneNum);
+        await billingAddressComponent.clickContinueBtn();
     }
 
     private getAddtionalPrice(optionFullText: string): number {
