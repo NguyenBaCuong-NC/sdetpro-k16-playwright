@@ -9,7 +9,7 @@ import CheckOutPage from "../../models/pages/CheckOutPage";
 // export class OrderComputerFlow extends LoginFlow {}
 export class OrderComputerFlow {
 
-    private totalPrice: number = 0;
+    private totalPriceList: number[] = [];
 
     constructor(private page: Page, private computersData: ComputerDataType[]) {
         this.page = page;
@@ -25,7 +25,6 @@ export class OrderComputerFlow {
 
             // Build computer spec base on test data
             const { processor, hdd, ram, os, software, quantity } = computerData;
-
             const processorAdditionalPrice = this.getAddtionalPrice(await computerComponent.selectProcessor(processor));
             const ramAdditionalPrice = this.getAddtionalPrice(await computerComponent.selectRAM(ram));
             const hddAdditionalPrice = this.getAddtionalPrice(await computerComponent.selectHDD(hdd));
@@ -40,17 +39,15 @@ export class OrderComputerFlow {
 
             const basePrice = await computerComponent.getBasePrice();
             const additionalPrice = processorAdditionalPrice + ramAdditionalPrice + hddAdditionalPrice + softwareAdditionalPrice + osAdditionalPrice;
-            this.totalPrice += (basePrice + additionalPrice) * (quantity ? quantity : 1);
+            let totalPrice = (basePrice + additionalPrice) * (quantity ? quantity : 1);
+            this.totalPriceList.push(totalPrice);
             // Add to cart and wait for event
             const requestSlug = await computerComponent.clickOnAddToCartBtn();
             await this.page.waitForResponse(requestSlug);
-
-            // Navigate to Shopping Cart Page
-            // await computerDetailsPage.headerComponent().clickOnShoppingCartLink();
-
         }
     }
 
+    // Navigate to Shopping Cart Page
     public async goToShoppingCart() {
         const computerDetailsPage = new ComputerDetailsPage(this.page);
         await computerDetailsPage.headerComponent().clickOnShoppingCartLink();
@@ -64,13 +61,15 @@ export class OrderComputerFlow {
         // Verify all shopping item rows
         expect(cartItemRowComponentList.length).toBeGreaterThan(0);
         let cartItemRowsSubtotal = 0;
-        for (const cartItemRow of cartItemRowComponentList) {
+        cartItemRowComponentList.forEach(async (cartItemRow, index) => {
             const unitPrice = await cartItemRow.unitPrice();
             const quantity = await cartItemRow.quantityPrice();
             const subTotal = await cartItemRow.subTotalPrice();
             cartItemRowsSubtotal += subTotal;
             expect(unitPrice * quantity).toBe(subTotal);
-        }
+            expect(subTotal).toBe(this.totalPriceList[index]);
+        })
+
 
         //Verifying totals component
         const priceCategories = await totalsComponent.priceCategories();
@@ -78,7 +77,6 @@ export class OrderComputerFlow {
         const shipping = priceCategories['Shipping:'];
         const tax = priceCategories['Tax:'];
         const total = priceCategories['Total:'];
-        expect(this.totalPrice).toBe(subTotal);
         expect(subTotal).toBe(cartItemRowsSubtotal);
         expect(total).toBe(subTotal + shipping + tax);
     }

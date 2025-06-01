@@ -11,8 +11,8 @@ export const cheapComputerData: ComputerDataType[] = [{
 
 export const cheapComputersData: ComputerDataType[] = [
     { computerCompClass: CheapComputerComponent, processor: "Slow", ram: "8 GB", hdd: "320 GB", software: "Image Viever", },
-    { computerCompClass: CheapComputerComponent, processor: "Medium", ram: "8 GB", hdd: "320 GB", software: "Office Suite", },
-    // { computerCompClass: CheapComputerComponent, processor: "Fast", ram: "8 GB", hdd: "320 GB", software: "Image Viever", },
+    { computerCompClass: CheapComputerComponent, processor: "Medium", ram: "8 GB", hdd: "320 GB", software: "Image Viever", },
+    { computerCompClass: CheapComputerComponent, processor: "Fast", ram: "8 GB", hdd: "320 GB", software: "Image Viever", },
     // { computerCompClass: CheapComputerComponent, processor: "Slow", ram: "2 GB", hdd: "320 GB", software: "Image Viever", },
     // { computerCompClass: CheapComputerComponent, processor: "Medium", ram: "2 GB", hdd: "320 GB", software: "Image Viever", },
     // { computerCompClass: CheapComputerComponent, processor: "Fast", ram: "2 GB", hdd: "320 GB", software: "Image Viever", },
