@@ -15,7 +15,7 @@ export default class ProductEssentialComponent {
     public async unselectAllOptions() {
         const allOptionLoc: Locator[] = await this.component.locator(this.allOptionSel).all();
         for (const optionLoc of allOptionLoc) {
-            const isOptionSelected = await optionLoc.getAttribute("checked");
+            const isOptionSelected = await optionLoc.isChecked();
             if (isOptionSelected) {
                 await optionLoc.click();
             }

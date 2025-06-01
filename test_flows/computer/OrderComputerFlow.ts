@@ -41,7 +41,6 @@ export class OrderComputerFlow {
             const basePrice = await computerComponent.getBasePrice();
             const additionalPrice = processorAdditionalPrice + ramAdditionalPrice + hddAdditionalPrice + softwareAdditionalPrice + osAdditionalPrice;
             this.totalPrice += (basePrice + additionalPrice) * (quantity ? quantity : 1);
-            console.log((basePrice + additionalPrice) * (quantity ? quantity : 1));
             // Add to cart and wait for event
             const requestSlug = await computerComponent.clickOnAddToCartBtn();
             await this.page.waitForResponse(requestSlug);
@@ -82,8 +81,6 @@ export class OrderComputerFlow {
         expect(this.totalPrice).toBe(subTotal);
         expect(subTotal).toBe(cartItemRowsSubtotal);
         expect(total).toBe(subTotal + shipping + tax);
-        console.log(this.totalPrice);
-
     }
 
     public async agreeTosAndCheckOut() {
