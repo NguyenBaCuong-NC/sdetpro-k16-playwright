@@ -1,13 +1,21 @@
 import test from "@playwright/test";
 import { OrderComputerFlow } from "../../test_flows/computer/OrderComputerFlow";
 import { cheapComputerData } from "../../test_data/computer/CheapComputerData";
+import { cheapComputersData } from "../../test_data/computer/CheapComputerData";
 
-test("Cheap Computer Component Test", async ({ page }) => {
+test(`Cheap Computer Component Test`, async ({ page }) => {
     await page.goto("https://demowebshop.tricentis.com/build-your-cheap-own-computer");
-    const orderComputerFlow = new OrderComputerFlow(page, cheapComputerData);
+    const orderComputerFlow = new OrderComputerFlow(page, cheapComputersData);
     await orderComputerFlow.buildComputerSpecAndAddToCard();
+    await orderComputerFlow.goToShoppingCart();
     await orderComputerFlow.verifyShoppingCart();
     await orderComputerFlow.agreeTosAndCheckOut();
     await orderComputerFlow.inputBillingAddress();
 });
+
+
+
+
+
+
 

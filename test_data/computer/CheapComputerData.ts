@@ -1,10 +1,72 @@
 import CheapComputerComponent from "../../models/components/computer/CheapComputerComponent";
 import { ComputerDataType } from "./ComputerDataType";
 
-export const cheapComputerData: ComputerDataType = {
+export const cheapComputerData: ComputerDataType[] = [{
     computerCompClass: CheapComputerComponent,
     processor: "Fast",
     ram: "8 GB",
     hdd: "400 GB",
     software: "Image Viever",
-}
+}]
+
+export const cheapComputersData: ComputerDataType[] = [
+    { computerCompClass: CheapComputerComponent, processor: "Slow", ram: "8 GB", hdd: "320 GB", software: "Image Viever", },
+    { computerCompClass: CheapComputerComponent, processor: "Medium", ram: "8 GB", hdd: "320 GB", software: "Office Suite", },
+    // { computerCompClass: CheapComputerComponent, processor: "Fast", ram: "8 GB", hdd: "320 GB", software: "Image Viever", },
+    // { computerCompClass: CheapComputerComponent, processor: "Slow", ram: "2 GB", hdd: "320 GB", software: "Image Viever", },
+    // { computerCompClass: CheapComputerComponent, processor: "Medium", ram: "2 GB", hdd: "320 GB", software: "Image Viever", },
+    // { computerCompClass: CheapComputerComponent, processor: "Fast", ram: "2 GB", hdd: "320 GB", software: "Image Viever", },
+    // { computerCompClass: CheapComputerComponent, processor: "Slow", ram: "4 GB", hdd: "320 GB", software: "Image Viever", },
+    // { computerCompClass: CheapComputerComponent, processor: "Medium", ram: "4 GB", hdd: "320 GB", software: "Image Viever", },
+    // { computerCompClass: CheapComputerComponent, processor: "Fast", ram: "4 GB", hdd: "320 GB", software: "Image Viever", },
+
+    // { computerCompClass: CheapComputerComponent, processor: "Slow", ram: "8 GB", hdd: "400 GB", software: "Image Viever", },
+    // { computerCompClass: CheapComputerComponent, processor: "Medium", ram: "8 GB", hdd: "400 GB", software: "Image Viever", },
+    // { computerCompClass: CheapComputerComponent, processor: "Fast", ram: "8 GB", hdd: "400 GB", software: "Image Viever", },
+    // { computerCompClass: CheapComputerComponent, processor: "Slow", ram: "2 GB", hdd: "400 GB", software: "Image Viever", },
+    // { computerCompClass: CheapComputerComponent, processor: "Medium", ram: "2 GB", hdd: "400 GB", software: "Image Viever", },
+    // { computerCompClass: CheapComputerComponent, processor: "Fast", ram: "2 GB", hdd: "400 GB", software: "Image Viever", },
+    // { computerCompClass: CheapComputerComponent, processor: "Slow", ram: "4 GB", hdd: "400 GB", software: "Image Viever", },
+    // { computerCompClass: CheapComputerComponent, processor: "Medium", ram: "4 GB", hdd: "400 GB", software: "Image Viever", },
+    // { computerCompClass: CheapComputerComponent, processor: "Fast", ram: "4 GB", hdd: "400 GB", software: "Image Viever", },
+
+    // { computerCompClass: CheapComputerComponent, processor: "Slow", ram: "8 GB", hdd: "320 GB", software: "Office Suite", },
+    // { computerCompClass: CheapComputerComponent, processor: "Medium", ram: "8 GB", hdd: "320 GB", software: "Office Suite", },
+    // { computerCompClass: CheapComputerComponent, processor: "Fast", ram: "8 GB", hdd: "320 GB", software: "Office Suite", },
+    // { computerCompClass: CheapComputerComponent, processor: "Slow", ram: "2 GB", hdd: "320 GB", software: "Office Suite", },
+    // { computerCompClass: CheapComputerComponent, processor: "Medium", ram: "2 GB", hdd: "320 GB", software: "Office Suite", },
+    // { computerCompClass: CheapComputerComponent, processor: "Fast", ram: "2 GB", hdd: "320 GB", software: "Office Suite", },
+    // { computerCompClass: CheapComputerComponent, processor: "Slow", ram: "4 GB", hdd: "320 GB", software: "Office Suite", },
+    // { computerCompClass: CheapComputerComponent, processor: "Medium", ram: "4 GB", hdd: "320 GB", software: "Office Suite", },
+    // { computerCompClass: CheapComputerComponent, processor: "Fast", ram: "4 GB", hdd: "320 GB", software: "Office Suite", },
+
+    // { computerCompClass: CheapComputerComponent, processor: "Slow", ram: "8 GB", hdd: "400 GB", software: "Office Suite", },
+    // { computerCompClass: CheapComputerComponent, processor: "Medium", ram: "8 GB", hdd: "400 GB", software: "Office Suite", },
+    // { computerCompClass: CheapComputerComponent, processor: "Fast", ram: "8 GB", hdd: "400 GB", software: "Office Suite", },
+    // { computerCompClass: CheapComputerComponent, processor: "Slow", ram: "2 GB", hdd: "400 GB", software: "Office Suite", },
+    // { computerCompClass: CheapComputerComponent, processor: "Medium", ram: "2 GB", hdd: "400 GB", software: "Office Suite", },
+    // { computerCompClass: CheapComputerComponent, processor: "Fast", ram: "2 GB", hdd: "400 GB", software: "Office Suite", },
+    // { computerCompClass: CheapComputerComponent, processor: "Slow", ram: "4 GB", hdd: "400 GB", software: "Office Suite", },
+    // { computerCompClass: CheapComputerComponent, processor: "Medium", ram: "4 GB", hdd: "400 GB", software: "Office Suite", },
+    // { computerCompClass: CheapComputerComponent, processor: "Fast", ram: "4 GB", hdd: "400 GB", software: "Office Suite", },
+
+    // { computerCompClass: CheapComputerComponent, processor: "Slow", ram: "8 GB", hdd: "320 GB", software: "Other Office Suite", },
+    // { computerCompClass: CheapComputerComponent, processor: "Medium", ram: "8 GB", hdd: "320 GB", software: "Other Office Suite", },
+    // { computerCompClass: CheapComputerComponent, processor: "Fast", ram: "8 GB", hdd: "320 GB", software: "Other Office Suite", },
+    // { computerCompClass: CheapComputerComponent, processor: "Slow", ram: "2 GB", hdd: "320 GB", software: "Other Office Suite", },
+    // { computerCompClass: CheapComputerComponent, processor: "Medium", ram: "2 GB", hdd: "320 GB", software: "Other Office Suite", },
+    // { computerCompClass: CheapComputerComponent, processor: "Fast", ram: "2 GB", hdd: "320 GB", software: "Other Office Suite", },
+    // { computerCompClass: CheapComputerComponent, processor: "Slow", ram: "4 GB", hdd: "320 GB", software: "Other Office Suite", },
+    // { computerCompClass: CheapComputerComponent, processor: "Medium", ram: "4 GB", hdd: "320 GB", software: "Other Office Suite", },
+    // { computerCompClass: CheapComputerComponent, processor: "Fast", ram: "4 GB", hdd: "320 GB", software: "Other Office Suite", },
+
+    // { computerCompClass: CheapComputerComponent, processor: "Slow", ram: "8 GB", hdd: "400 GB", software: "Other Office Suite", },
+    // { computerCompClass: CheapComputerComponent, processor: "Medium", ram: "8 GB", hdd: "400 GB", software: "Other Office Suite", },
+    // { computerCompClass: CheapComputerComponent, processor: "Fast", ram: "8 GB", hdd: "400 GB", software: "Other Office Suite", },
+    // { computerCompClass: CheapComputerComponent, processor: "Slow", ram: "2 GB", hdd: "400 GB", software: "Other Office Suite", },
+    // { computerCompClass: CheapComputerComponent, processor: "Medium", ram: "2 GB", hdd: "400 GB", software: "Other Office Suite", },
+    // { computerCompClass: CheapComputerComponent, processor: "Fast", ram: "2 GB", hdd: "400 GB", software: "Other Office Suite", },
+    // { computerCompClass: CheapComputerComponent, processor: "Slow", ram: "4 GB", hdd: "400 GB", software: "Other Office Suite", },
+    // { computerCompClass: CheapComputerComponent, processor: "Medium", ram: "4 GB", hdd: "400 GB", software: "Other Office Suite", },
+    // { computerCompClass: CheapComputerComponent, processor: "Fast", ram: "4 GB", hdd: "400 GB", software: "Other Office Suite", },
+]
