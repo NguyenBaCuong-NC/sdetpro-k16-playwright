@@ -11,14 +11,14 @@ export class OrderComputerFlow {
 
     private totalPriceList: number[] = [];
 
-    constructor(private page: Page, private computersData: ComputerDataType[]) {
+    constructor(private page: Page, private computerDataList: ComputerDataType[]) {
         this.page = page;
-        this.computersData = computersData;
+        this.computerDataList = computerDataList;
     }
 
     async buildComputerSpecAndAddToCard() {
         const computerDetailsPage = new ComputerDetailsPage(this.page);
-        for (const computerData of this.computersData) {
+        for (const computerData of this.computerDataList) {
             const computerComponent = computerDetailsPage.computerComponent(computerData.computerCompClass);
             // Unselect all default options
             await computerComponent.unselectAllOptions();
@@ -45,11 +45,8 @@ export class OrderComputerFlow {
             const requestSlug = await computerComponent.clickOnAddToCartBtn();
             await this.page.waitForResponse(requestSlug);
         }
-    }
 
-    // Navigate to Shopping Cart Page
-    public async goToShoppingCart() {
-        const computerDetailsPage = new ComputerDetailsPage(this.page);
+        // Navigate to Shopping Cart Page
         await computerDetailsPage.headerComponent().clickOnShoppingCartLink();
     }
 
@@ -61,10 +58,10 @@ export class OrderComputerFlow {
         // Verify all shopping item rows
         expect(cartItemRowComponentList.length).toBeGreaterThan(0);
         let cartItemRowsSubtotal = 0;
-        cartItemRowComponentList.forEach(async (cartItemRow, index) => {
-            const unitPrice = await cartItemRow.unitPrice();
-            const quantity = await cartItemRow.quantityPrice();
-            const subTotal = await cartItemRow.subTotalPrice();
+        cartItemRowComponentList.forEach(async (cartItemRowComponent, index) => {
+            const unitPrice = await cartItemRowComponent.unitPrice();
+            const quantity = await cartItemRowComponent.quantityPrice();
+            const subTotal = await cartItemRowComponent.subTotalPrice();
             cartItemRowsSubtotal += subTotal;
             expect(unitPrice * quantity).toBe(subTotal);
             expect(subTotal).toBe(this.totalPriceList[index]);

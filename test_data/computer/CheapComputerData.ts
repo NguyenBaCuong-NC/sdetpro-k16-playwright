@@ -9,7 +9,7 @@ export const cheapComputerData: ComputerDataType[] = [{
     software: "Image Viever",
 }]
 
-export const cheapComputersData: ComputerDataType[] = [
+export const cheapComputerDataList: ComputerDataType[] = [
     { computerCompClass: CheapComputerComponent, processor: "Slow", ram: "8 GB", hdd: "320 GB", software: "Image Viever", },
     { computerCompClass: CheapComputerComponent, processor: "Medium", ram: "8 GB", hdd: "320 GB", software: "Image Viever", },
     { computerCompClass: CheapComputerComponent, processor: "Fast", ram: "8 GB", hdd: "320 GB", software: "Image Viever", },
