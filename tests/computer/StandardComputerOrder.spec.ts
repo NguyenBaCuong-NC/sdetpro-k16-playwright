@@ -9,5 +9,10 @@ test("Build Standard Computer Test", async ({ page }) => {
     await orderComputerFlow.verifyShoppingCart();
     await orderComputerFlow.agreeTosAndCheckOut();
     await orderComputerFlow.inputBillingAddress();
+    await orderComputerFlow.inputShippingAddress();
+    await orderComputerFlow.selectShippingMethod();
+    await orderComputerFlow.selectPaymentMethod();
+    await orderComputerFlow.inputPaymentInfomation();
+    await orderComputerFlow.confirmOrder();
 });
 
