@@ -5,6 +5,7 @@ import HeaderComponent from "../components/global/header/HeaderComponent";
 export default class BasePage {
 
     protected page: Page
+    private barNotificationSel = '#bar-notification';
 
     constructor(page: Page) {
         this.page = page;
@@ -16,6 +17,10 @@ export default class BasePage {
 
     public headerComponent(): HeaderComponent {
         return new HeaderComponent(this.page.locator(HeaderComponent.LOCATOR));
+    }
+
+    public async getBarNotificationText() {
+        return await this.page.locator(this.barNotificationSel).innerText();
     }
 
 }

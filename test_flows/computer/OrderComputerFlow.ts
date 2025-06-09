@@ -18,7 +18,15 @@ export class OrderComputerFlow {
         this.computerDataList = computerDataList;
     }
 
-    async buildComputerSpecAndAddToCard() {
+    public async buildComputerSpecAndAddToCard() {
+        await this.buildComputerSpecSelectively();
+        const computerDetailsPage = new ComputerDetailsPage(this.page);
+
+        // Navigate to Shopping Cart Page
+        await computerDetailsPage.headerComponent().clickOnShoppingCartLink();
+    }
+
+    public async buildComputerSpecSelectively() {
         const computerDetailsPage = new ComputerDetailsPage(this.page);
         for (const computerData of this.computerDataList) {
             const computerComponent = computerDetailsPage.computerComponent(computerData.computerCompClass);
@@ -27,14 +35,22 @@ export class OrderComputerFlow {
 
             // Build computer spec base on test data
             const { processor, hdd, ram, os, software, quantity } = computerData;
-            const processorAdditionalPrice = this.getAddtionalPrice(await computerComponent.selectProcessor(processor));
-
-            const ramAdditionalPrice = this.getAddtionalPrice(await computerComponent.selectRAM(ram));
-            const hddAdditionalPrice = this.getAddtionalPrice(await computerComponent.selectHDD(hdd));
-            const softwareAdditionalPrice = this.getAddtionalPrice(await computerComponent.selectSoftware(software));
+            let processorAdditionalPrice = 0;
+            let ramAdditionalPrice = 0;
+            let hddAdditionalPrice = 0;
+            let softwareAdditionalPrice = 0;
             let osAdditionalPrice = 0;
-            if (os) {
-                osAdditionalPrice = this.getAddtionalPrice(await computerComponent.selectOs(os));
+            if (processor) {
+                processorAdditionalPrice = this.getAddtionalPrice(await computerComponent.selectProcessor(processor));
+            }
+            if (ram) {
+                ramAdditionalPrice = this.getAddtionalPrice(await computerComponent.selectRAM(ram));
+            }
+            if (hdd) {
+                hddAdditionalPrice = this.getAddtionalPrice(await computerComponent.selectHDD(hdd));
+            }
+            if (software) {
+                softwareAdditionalPrice = this.getAddtionalPrice(await computerComponent.selectSoftware(software));
             }
             if (quantity) {
                 await computerComponent.inputQuantity(quantity);
@@ -49,8 +65,6 @@ export class OrderComputerFlow {
             await this.page.waitForResponse(requestSlug);
         }
 
-        // Navigate to Shopping Cart Page
-        await computerDetailsPage.headerComponent().clickOnShoppingCartLink();
     }
 
     public async verifyShoppingCart() {

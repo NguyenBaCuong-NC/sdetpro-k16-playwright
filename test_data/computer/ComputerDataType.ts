@@ -4,10 +4,10 @@ import { ComputerComponentConstructor } from "../../models/pages/ComputerDetails
 export interface ComputerDataType {
     loginCreds?: { username: string, password: string },
     computerCompClass: ComputerComponentConstructor<ComputerEssentialComponent>,
-    processor: string,
-    ram: string,
-    hdd: string,
+    processor?: string,
+    ram?: string,
+    hdd?: string,
     os?: string,
-    software: string,
+    software?: string,
     quantity?: number,
 }
